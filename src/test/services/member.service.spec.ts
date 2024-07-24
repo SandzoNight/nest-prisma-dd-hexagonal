@@ -4,7 +4,7 @@ import { MEMBER_REPOSITORY } from 'src/common/shared/common';
 import { IMemberRepository } from 'src/infrastructure/repository/member/IMember.repository';
 import { mockMemberRepository } from '../mock-fn';
 import { MemberService } from 'src/application/services/member/member.service';
-import { GetMemberResponseDto } from 'src/application/dtos/member.dtos';
+import { CreateMemberResponseDto, GetMemberResponseDto } from 'src/application/dtos/member.dtos';
 
 describe('MemberService', () => {
   let service: IMemberServices;
@@ -46,6 +46,29 @@ describe('MemberService', () => {
 
       const result = await service.findById(memberId);
       expect(result).toBeNull();
+    });
+  });
+
+  describe('findById', () => {
+    it('should return a create member', async () => {
+      const memberId = '25552';
+      const createMemberRequest = {
+        name: 'Wiriya Au',
+        email: 'wiriya.a@kingpower.com',
+        age: '30',
+      };
+      const createMemberResponse = {
+        memberId: memberId,
+        name: 'Wiriya Au',
+        email: 'wiriya.a@kingpower.com',
+        age: '30',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+      jest.spyOn(repository, 'create').mockResolvedValue(createMemberResponse);
+
+      const result = await service.createMember(createMemberRequest);
+      expect(result).toEqual(CreateMemberResponseDto.fromEntity(createMemberResponse));
     });
   });
 });
