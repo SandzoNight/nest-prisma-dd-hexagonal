@@ -73,7 +73,6 @@
     },
     "collectCoverageFrom": [
       "application/services/**/*.{ts,tsx}",
-      "infrastructure/repository/**/*.{ts,tsx}",
       "!**/node_modules/**",
       "!**/test/**"
     ],
