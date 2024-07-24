@@ -50,7 +50,7 @@ describe('MemberService', () => {
   });
 
   describe('createMember', () => {
-    it('should return a create member', async () => {
+    it('should create member success', async () => {
       const memberId = '25552';
       const createMemberRequest = {
         name: 'Wiriya Au',
