@@ -49,7 +49,7 @@ describe('MemberService', () => {
     });
   });
 
-  describe('findById', () => {
+  describe('createMember', () => {
     it('should return a create member', async () => {
       const memberId = '25552';
       const createMemberRequest = {
