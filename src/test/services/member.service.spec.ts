@@ -1,9 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { MemberService } from '../../application/services/member/member.service';
-import { IMemberRepository } from '../../infrastructure/repository/member/IMember.repository';
-import { IMemberServices } from '../../application/services/member/IMember.services';
-import { MEMBER_REPOSITORY } from '../../common/shared/common';
-import { GetMemberResponseDto } from '../../application/dtos/member.dtos';
+import { IMemberServices } from 'src/application/services/member/IMember.services';
+import { MEMBER_REPOSITORY } from 'src/common/shared/common';
+import { IMemberRepository } from 'src/infrastructure/repository/member/IMember.repository';
+import { mockMemberRepository } from '../mock-fn';
+import { MemberService } from 'src/application/services/member/member.service';
+import { GetMemberResponseDto } from 'src/application/dtos/member.dtos';
 
 describe('MemberService', () => {
   let service: IMemberServices;
@@ -13,13 +14,7 @@ describe('MemberService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         MemberService,
-        {
-          provide: MEMBER_REPOSITORY,
-          useValue: {
-            findById: jest.fn(),
-            create: jest.fn(),
-          },
-        },
+        { provide: MEMBER_REPOSITORY, useValue: mockMemberRepository }, // Mock repository
       ],
     }).compile();
 
@@ -32,7 +27,7 @@ describe('MemberService', () => {
       const memberId = '25552';
       const member = {
         id: 1,
-        memberId: '123213',
+        memberId: '25552',
         name: 'Wiriya Au',
         email: 'wiriya.a@kingpower.com',
         age: '30',
