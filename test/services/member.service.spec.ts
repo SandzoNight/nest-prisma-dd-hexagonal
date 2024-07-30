@@ -12,14 +12,20 @@ describe('MemberService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [
-        MemberService,
-        { provide: MEMBER_REPOSITORY, useValue: mockMemberRepository }, // Mock repository
-      ],
+      providers: [MemberService, { provide: MEMBER_REPOSITORY, useValue: mockMemberRepository }],
     }).compile();
 
     service = module.get<IMemberServices>(MemberService);
     repository = module.get<IMemberRepository>(MEMBER_REPOSITORY);
+  });
+
+  it('services and repository should be defined', () => {
+    expect(service).toBeDefined();
+    expect(repository).toBeDefined();
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
   describe('findById', () => {
