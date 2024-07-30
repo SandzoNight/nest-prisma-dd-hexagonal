@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDir": "./src",
-    "baseUrl": ".",
+    "rootDir": "./",
+    "baseUrl": "./",
     "paths": {
-      "src/*": ["./src/*"]
+      "@src/*": ["src/*"],
+      "@tests/*": ["tests/*"]
     },
     "module": "commonjs",
     "declaration": true,
@@ -22,9 +23,7 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false
   },
-  "include": [
-    "src/**/*.ts"
-  ],
+  "include": ["src/**/*", "tests/**/*"],
   "exclude": [
     "node_modules"
   ]
