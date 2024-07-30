@@ -19,6 +19,6 @@ export class MemberService implements IMemberServices {
 
   async createMember(data: CreateMemberSchema): Promise<CreateMemberResponseDto> {
     const createMember = await this._memberRepo.create(data);
-    return createMember ? CreateMemberResponseDto.fromEntity(createMember) : null;
+    return CreateMemberResponseDto.fromEntity(createMember);
   }
 }

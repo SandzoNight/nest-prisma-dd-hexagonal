@@ -6,7 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "prisma:migration": "npx prisma migrate dev --name $NAME",
+    "prisma:migration": "npx prisma migrate dev --name init",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "npx prisma generate && npm run build && nest start",
@@ -73,8 +73,7 @@
     },
     "collectCoverageFrom": [
       "application/services/**/*.{ts,tsx}",
-      "!**/node_modules/**",
-      "!**/test/**"
+      "!**/node_modules/**"
     ],
     "coverageThreshold": {
       "global": {
