@@ -66,13 +66,13 @@
       "json",
       "ts"
     ],
-    "rootDir": "./",
-    "testRegex": "test/services/.*\\.spec\\.ts$",
+    "rootDir": ".",
+    "testRegex": "tests/.*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
     "collectCoverageFrom": [
-      "application/services/**/*.{ts,tsx}",
+      "src/application/services/**/*.{ts,tsx}",
       "!**/node_modules/**"
     ],
     "coverageThreshold": {
@@ -86,7 +86,8 @@
     "coverageDirectory": "../coverage",
     "testEnvironment": "node",
     "moduleNameMapper": {
-      "^src/(.*)$": "<rootDir>/$1"
+      "^src/(.*)$": "<rootDir>/src/$1",
+      "^@test/(.*)$": "<rootDir>/tests/$1"
     }
   },
   "prisma": {
