@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { PrismaService } from 'src/infrastructure/persistence/prisma/prisma.service';
 import { MemberRepository } from './member/member.repository';
-import { MEMBER_REPOSITORY } from 'src/common/shared/common';
+import { PrismaService } from '/infrastructure/persistence/prisma/prisma.service';
+import { MEMBER_REPOSITORY } from '/common/shared/common';
 
 @Module({
   providers: [
