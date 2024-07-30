@@ -1,10 +1,10 @@
 import { Body, Controller, Get, Inject, Param, Post } from '@nestjs/common';
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { ApiCommonResponses } from 'src/common/utils/swagger-response-helper';
-import { CreateMemberSchema } from 'src/domain/models/schema/member.schema';
-import { CreateMemberResponseDto, GetMemberResponseDto } from '../dtos/member.dtos';
 import { MEMBER_SERVICE } from 'src/common/shared/common';
 import { IMemberServices } from '../services/member/IMember.services';
+import { CreateMemberResponseDto, GetMemberResponseDto } from '../dtos/member.dtos';
+import { CreateMemberSchema } from 'src/domain/models/schema/member.schema';
 
 @ApiTags('Member')
 @ApiCommonResponses('Member')

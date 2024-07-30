@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { IMemberServices } from './IMember.services';
 import { MEMBER_REPOSITORY } from 'src/common/shared/common';
 import { IMemberRepository } from 'src/infrastructure/repository/member/IMember.repository';
 import { CreateMemberResponseDto, GetMemberResponseDto } from 'src/application/dtos/member.dtos';
 import { CreateMemberSchema } from 'src/domain/models/schema/member.schema';
+import { IMemberServices } from './IMember.services';
 
 @Injectable()
 export class MemberService implements IMemberServices {
