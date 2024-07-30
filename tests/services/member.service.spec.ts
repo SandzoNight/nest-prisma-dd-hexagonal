@@ -1,10 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { IMemberServices } from 'src/application/services/member/IMember.services';
-import { MEMBER_REPOSITORY } from 'src/common/shared/common';
-import { IMemberRepository } from 'src/infrastructure/repository/member/IMember.repository';
-import { MemberService } from 'src/application/services/member/member.service';
-import { CreateMemberResponseDto, GetMemberResponseDto } from 'src/application/dtos/member.dtos';
 import { mockMemberRepository } from '../mock-fn';
+import { IMemberServices } from '/application/services/member/IMember.services';
+import { IMemberRepository } from '/infrastructure/repository/member/IMember.repository';
+import { MemberService } from '/application/services/member/member.service';
+import { MEMBER_REPOSITORY } from '/common/shared/common';
+import { CreateMemberResponseDto, GetMemberResponseDto } from '/application/dtos/member.dtos';
 
 describe('MemberService', () => {
   let service: IMemberServices;

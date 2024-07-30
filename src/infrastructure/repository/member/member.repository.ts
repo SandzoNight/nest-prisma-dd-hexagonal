@@ -1,9 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { member } from '@prisma/client';
 import { IMemberRepository } from './IMember.repository';
-import { PrismaService } from 'src/infrastructure/persistence/prisma/prisma.service';
-import { CreateMemberSchema } from 'src/domain/models/schema/member.schema';
-// import { CreateMemberSchema } from 'src/domain/services/member/schema/member.schema';
+import { PrismaService } from '/infrastructure/persistence/prisma/prisma.service';
+import { CreateMemberSchema } from '/domain/models/schema/member.schema';
 
 @Injectable()
 export class MemberRepository implements IMemberRepository {
