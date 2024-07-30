@@ -4,8 +4,8 @@
     "rootDir": "./",
     "baseUrl": "./",
     "paths": {
-      "@src/*": ["src/*"],
-      "@tests/*": ["tests/*"]
+      "/*": ["src/*"],
+      "tests/*": ["tests/*"]
     },
     "module": "commonjs",
     "declaration": true,
