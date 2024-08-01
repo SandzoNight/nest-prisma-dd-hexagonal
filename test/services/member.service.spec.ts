@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { IMemberServices } from 'src/application/services/member/IMember.services';
-import { IMemberRepository } from 'src/infrastructure/repository/member/IMember.repository';
+import { IMemberRepository } from 'src/modules/member/database/IMember.repository';
 import { MemberService } from 'src/application/services/member/member.service';
 import { MEMBER_REPOSITORY } from 'src/common/shared/common';
 import { CreateMemberResponseDto, GetMemberResponseDto } from 'src/application/dtos/member.dtos';
