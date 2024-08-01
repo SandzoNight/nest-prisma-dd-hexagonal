@@ -17,7 +17,7 @@ export class CreateMemberRequest {
   readonly email: string;
 
   @ApiProperty({
-    example: 'john@gmail.com',
+    example: 'John Doe',
     description: 'User name',
   })
   @MaxLength(320)
