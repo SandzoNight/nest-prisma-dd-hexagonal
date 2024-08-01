@@ -7,6 +7,7 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 import { LoggerPort } from '../ports/logger.port';
 import { ObjectLiteral } from '../types';
 import { PrismaService } from '@src/infrastructure/persistence/prisma/prisma.service';
+import { BadRequestException } from '@nestjs/common';
 
 export abstract class SqlRepositoryBase<
   Aggregate extends AggregateRoot<any>,
@@ -112,7 +113,7 @@ export abstract class SqlRepositoryBase<
       if (error.code === 'P2002') {
         this.logger.debug(
           `[${RequestContextService.getRequestId()}] ${
-            (error.originalError as any).detail
+            error
           }`,
         );
         throw new ConflictException('Record already exists', error);
@@ -130,73 +131,6 @@ export abstract class SqlRepositoryBase<
       ),
     );
   }
-
-  /**
-   * Utility method for write queries when you need to mutate an entity.
-   * Executes entity validation, publishes events,
-   * and does some debug logging.
-   * For read queries use `this.pool` directly
-   */
-  protected async writeQuery<T>(
-    entity: Aggregate | Aggregate[],
-  ): Promise<any>
-  {
-    const entities = Array.isArray(entity) ? entity : [entity];
-    entities.forEach((entity) => entity.validate());
-    const entityIds = entities.map((e) => e.id);
-
-    this.logger.debug(
-      `[${RequestContextService.getRequestId()}] writing ${
-        entities.length
-      } entities to "${this.tableName}" table: ${entityIds}`,
-    );
-
-
-    const result = await this.prisma[this.tableName].createMany({
-      data: entities.map(this.mapper.toPersistence),
-    })
-
-    this.publishEvents(entities);
-
-    return result;
-  }
-
-  // /**
-  //  * Utility method to generate insert query for any objects.
-  //  * Use carefully and don't accept non-validated objects.
-  //  *
-  //  * Passing object with { name: string, email: string } will generate
-  //  * a query: INSERT INTO "table" (name, email) VALUES ($1, $2)
-  //  */
-  // protected generateInsertQuery(
-  //   models: DbModel[],
-  // ): SqlSqlToken<QueryResultRow> {
-  //   // TODO: generate query from an entire array to insert multiple records at once
-  //   const entries = Object.entries(models[0]);
-  //   const values: any = [];
-  //   const propertyNames: IdentifierSqlToken[] = [];
-
-  //   entries.forEach((entry) => {
-  //     if (entry[0] && entry[1] !== undefined) {
-  //       propertyNames.push(sql.identifier([entry[0]]));
-  //       if (entry[1] instanceof Date) {
-  //         values.push(sql.timestamp(entry[1]));
-  //       } else {
-  //         values.push(entry[1]);
-  //       }
-  //     }
-  //   });
-
-  //   const query = sql`INSERT INTO ${sql.identifier([
-  //     this.tableName,
-  //   ])} (${sql.join(propertyNames, sql`, `)}) VALUES (${sql.join(
-  //     values,
-  //     sql`, `,
-  //   )})`;
-
-  //   const parsedQuery = query;
-  //   return parsedQuery;
-  // }
 
   // /**
   //  * start a global transaction to save
