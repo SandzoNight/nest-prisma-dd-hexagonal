@@ -5,8 +5,10 @@ import { MemberResponse } from '../../responses/member.response';
 import { CreateMemberRequest } from '../../requests/member.request';
 import { MemberMapper } from '../../member.mapper';
 import { IdResponse } from '@src/libs/api/id.response.dto';
+import { ApiCommonResponses } from '@src/common/utils/swagger-response-helper';
 
 @ApiTags('Member')
+@ApiCommonResponses('Member')
 @Controller('members')
 export class MemberController {
   constructor(
